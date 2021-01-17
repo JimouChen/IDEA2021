@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean registerUser(int user_id, String password) {
-        return userDao.register(user_id, password);
+    public boolean registerUser(int user_id, String name, String password) {
+        return userDao.register(user_id, name, password);
     }
 }

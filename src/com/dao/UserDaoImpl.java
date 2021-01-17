@@ -46,10 +46,31 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean register(int user_id, String password) {
+    public boolean register(int user_id, String name, String password) {
         Connection connection = null;
-
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        QueryRunner queryRunner = new QueryRunner();
+        String sql = "SELECT * from `user` where `user_id` =" + user_id + ";";
         boolean registerFlag = false;
+
+        try {//先看看有没有已经注册过的账号
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) registerFlag = false;
+            else {
+                registerFlag = true;
+                String registerSql = "insert into `user` values (?,?,?,1);";
+                queryRunner.update(connection, registerSql, user_id, name, password);//注册即为vip
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.releaseSource1(resultSet, preparedStatement, connection);
+
+        }
         return registerFlag;
     }
 
@@ -59,23 +80,23 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         boolean loginFlag = false;
-        String sql = "SELECT psw from `user` where `user_id` = "+user_id+";";
+        String sql = "SELECT psw from `user` where `user_id` = " + user_id + ";";
 
         try {
             connection = DBUtil.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 String psw = resultSet.getString("psw");
-                if (psw.equals(password)){
+                if (psw.equals(password)) {
                     loginFlag = true;
                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             DBUtil.releaseSource1(resultSet, preparedStatement, connection);
         }
         return loginFlag;
