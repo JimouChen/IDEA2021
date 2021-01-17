@@ -1,16 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jmchen
-  Date: 2021/1/17
-  Time: 1:05
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>HomePage</title>
+    <title>Welcome Page</title>
 </head>
 <body style="background: url(${pageContext.request.contextPath}/src/images/banner1.jpg) fixed;">
-主页
+<h2 align="center">发布成功<br><br><br>
+<a href="${pageContext.request.contextPath}/publishedMsg.do">←查看已发布情况</a>
+</h2>
 </body>
 </html>

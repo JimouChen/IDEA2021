@@ -136,6 +136,7 @@
             ,element = layui.element;
   });
 
+
   /**
    function jump(){
 	var obj=document.getElementsByName("identity");
@@ -159,5 +160,6 @@
    **/
 
 </script>
+<center><a href="Pages/login.jsp"><h1>进入登录页</h1></a> </center>
 </body>
 </html>

@@ -53,6 +53,7 @@ public class LoginServlet extends HttpServlet {
         UserService userService = new UserServiceImpl();
         response.setContentType("text/html;charset=utf-8");
         int user_id = Integer.parseInt(request.getParameter("uid"));
+
         String password = request.getParameter("password");
         System.out.println(user_id);
         System.out.println(password);
@@ -60,6 +61,9 @@ public class LoginServlet extends HttpServlet {
 
         if (flag){//登陆成功
             System.out.println("登陆成功");
+            //把账号放到session
+            HttpSession session = request.getSession();
+            session.setAttribute("userid", user_id);
             request.getRequestDispatcher("/Pages/userBackstage.jsp").forward(request, response);
         }else {//登陆失败
             request.setAttribute("Massage", "账号或者密码输入有误或者输入为空，请重新输入");

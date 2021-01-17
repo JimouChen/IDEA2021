@@ -15,8 +15,8 @@
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="">主页</a></li>
-            <li class="layui-nav-item"><a href="">会员权限管理</a></li>
-            <li class="layui-nav-item"><a href="">出售信息管理</a></li>
+<%--            <li class="layui-nav-item"><a href="">会员权限管理</a></li>--%>
+<%--            <li class="layui-nav-item"><a href="">出售信息管理</a></li>--%>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
@@ -38,36 +38,37 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">所有商品</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="javascript:;">列表三</a></dd>
-                        <dd><a href="">超链接</a></dd>
-                    </dl>
+                    <a class="" href="javascript:;">管理操作</a>
+<%--                    <dl class="layui-nav-child">--%>
+<%--                        <dd><a href="javascript:;">列表一</a></dd>--%>
+<%--                        <dd><a href="javascript:;">列表二</a></dd>--%>
+<%--                        <dd><a href="javascript:;">列表三</a></dd>--%>
+<%--                        <dd><a href="">超链接</a></dd>--%>
+<%--                    </dl>--%>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="">超链接</a></dd>
-                    </dl>
+                    <a href="javascript:;">会员权限管理</a>
+<%--                    <dl class="layui-nav-child">--%>
+<%--                        <dd><a href="javascript:;">列表一</a></dd>--%>
+<%--                        <dd><a href="javascript:;">列表二</a></dd>--%>
+<%--                        <dd><a href="">超链接</a></dd>--%>
+<%--                    </dl>--%>
                 </li>
-                <li class="layui-nav-item"><a href="">云市场</a></li>
-                <li class="layui-nav-item"><a href="">发布商品</a></li>
+                <li class="layui-nav-item"><a href="">出售信息管理</a></li>
+<%--                <li class="layui-nav-item"><a href="">发布商品</a></li>--%>
             </ul>
         </div>
     </div>
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;">内容主体区域</div>
+<%--        <div style="padding: 15px;">内容主体区域</div>--%>
+        <iframe id="iframe_a" src="welcome.jsp" style="width: 100%" height="98%"></iframe>
     </div>
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        © layui.com - 底部固定区域
+        欢迎你
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/src/js/layui.js"></script>

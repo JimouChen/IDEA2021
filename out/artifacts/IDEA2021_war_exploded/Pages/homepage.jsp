@@ -10,7 +10,7 @@
 <head>
     <title>HomePage</title>
 </head>
-<body>
+<body style="background: url(${pageContext.request.contextPath}/src/images/banner1.jpg) fixed;">
 主页
 </body>
 </html>

@@ -16,7 +16,7 @@ public class RegisterServlet extends HttpServlet {
         int uid = Integer.parseInt(request.getParameter("uid"));
         String name = request.getParameter("username");
         String psw = request.getParameter("password");
-        System.out.println(uid+name+psw);
+
         if (userService.registerUser(uid, name, psw)) {
             //注册成功
             System.out.println("注册成功");
