@@ -3,6 +3,7 @@ package com.service;
 import com.dao.UserDao;
 import com.dao.UserDaoImpl;
 import com.entity.CarMsg;
+import com.entity.OtherCarsMsg;
 import com.entity.User;
 
 import java.util.List;
@@ -43,5 +44,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public void publishCar(int car_id) {
         userDao.daoPublish(car_id);
+    }
+
+    @Override
+    public void addNewCar(int user_id, String msg, double price) {
+        userDao.addCar(user_id, msg, price);
+    }
+
+    @Override
+    public List<OtherCarsMsg> queryOtherCar(int user_id) {
+        return userDao.lookOtherCar(user_id);
     }
 }

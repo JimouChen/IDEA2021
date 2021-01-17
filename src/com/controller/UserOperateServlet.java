@@ -1,5 +1,7 @@
 package com.controller;
 
+import com.entity.CarMsg;
+import com.entity.OtherCarsMsg;
 import com.service.UserService;
 import com.service.UserServiceImpl;
 
@@ -8,6 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 @WebServlet("*.car")
 public class UserOperateServlet extends HttpServlet {
@@ -47,14 +50,49 @@ public class UserOperateServlet extends HttpServlet {
         String msg = request.getParameter("carMsg");
         double price = Double.parseDouble(request.getParameter("money"));
         userService.updateCarMsg(carId, msg, price);
-//        System.out.println(msg + "  " + price);
-        request.getRequestDispatcher("/Pages/userBackstage.jsp").forward(request, response);
+        showSelfCarMsg(request, response);
+//        request.getRequestDispatcher("/Pages/userBackstage.jsp").forward(request, response);
     }
 
     protected void publishNewCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int carId = Integer.parseInt(request.getParameter("car_id"));
         userService.publishCar(carId);
-        request.getRequestDispatcher("/Pages/publishSuccessful.jsp").forward(request, response);
+        showSelfCarMsg(request, response);
         System.out.println("发布成功");
     }
+
+    protected void addCarMsg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        int user_id = (int) session.getAttribute("userid");
+        String msg = request.getParameter("newCarMsg");
+        double price = Double.parseDouble(request.getParameter("price"));
+
+        userService.addNewCar(user_id, msg, price);
+        showSelfCarMsg(request, response);
+        System.out.println("新增车信息成功");
+    }
+
+    protected void showSelfCarMsg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //回到未发布的车信息页
+        UserService userService = new UserServiceImpl();
+        HttpSession session = request.getSession();
+        int user_id = (int) session.getAttribute("userid");
+
+        List<CarMsg> carMsg = userService.showSelfCarMsg((user_id));
+        request.setAttribute("selfCarMsg", carMsg);
+        request.getRequestDispatcher("/Pages/saleInfo.jsp").forward(request, response);
+        System.out.println(carMsg);
+    }
+
+    //查看别人的二手车
+    protected void lookOthersCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        int user_id = (int) session.getAttribute("userid");
+        List<OtherCarsMsg> otherCarsMsg = userService.queryOtherCar(user_id);
+        request.setAttribute("otherCar", otherCarsMsg);
+        request.getRequestDispatcher("/Pages/queryOtherCars.jsp").forward(request, response);
+
+    }
+
+
 }

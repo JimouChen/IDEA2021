@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.CarMsg;
+import com.entity.OtherCarsMsg;
 import com.entity.User;
 import com.util.DBUtil;
 import org.apache.commons.dbutils.QueryRunner;
@@ -106,7 +107,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<CarMsg> carMsg = new ArrayList<>();
-        String sql = "SELECT car_id, car.user_id, car.msg as '汽车信息',car.price as '价格', `user`.`name` as '车主', car.publish as '发布状态', close_com, ban from car, `user` where `user`.user_id = car.user_id and car.publish = 0 and `user`.user_id = " + user_id + ";";
+        String sql = "SELECT car_id, car.user_id, car.msg as '汽车信息',car.price as '价格', `user`.`name` as '车主', car.publish as '发布状态', close_com, ban from car, `user` where car.ban = 0 and `user`.user_id = car.user_id and car.publish = 0 and `user`.user_id = " + user_id + ";";
 
         try {
             connection = DBUtil.getConnection();
@@ -142,7 +143,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<CarMsg> carMsg = new ArrayList<>();
-        String sql = "SELECT car_id, car.user_id, car.msg as '汽车信息',car.price as '价格', `user`.`name` as '车主', car.publish as '发布状态', close_com, ban from car, `user` where `user`.user_id = car.user_id and car.publish = 1 and `user`.user_id = " + user_id + ";";
+        String sql = "SELECT car_id, car.user_id, car.msg as '汽车信息',car.price as '价格', `user`.`name` as '车主', car.publish as '发布状态', close_com, ban from car, `user` where `user`.user_id = car.user_id and car.publish = 1 and car.ban = 0 and `user`.user_id = " + user_id + ";";
 
         try {
             connection = DBUtil.getConnection();
@@ -202,5 +203,62 @@ public class UserDaoImpl implements UserDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void addCar(int user_id, String msg, double price) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        QueryRunner queryRunner = new QueryRunner();
+        String sql1 = "SELECT COUNT(car_id) as 'num' from car;";
+        String sql2 = "INSERT INTO car VALUES (?, ?, ?, ?, 0, 0, 0);\n";
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql1);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int count = resultSet.getInt("num");
+                queryRunner.update(connection, sql2, count + 1, user_id, msg, price);
+            }
+
+            if (connection != null)
+                connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.releaseSource1(resultSet, preparedStatement, connection);
+        }
+    }
+
+    @Override
+    public List<OtherCarsMsg> lookOtherCar(int user_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<OtherCarsMsg> otherCarsMsg = new ArrayList<>();
+        String sql = "SELECT car.msg as'汽车信息',car.price'价格', `user`.`name`'车主' from car, `user` where `user`.user_id = car.user_id and car.publish = 1 and car.ban = 0\n" +
+                "and `user`.user_id !=" + user_id + " ;";
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String msg = resultSet.getString("汽车信息");
+                String owner = resultSet.getString("车主");
+                double price = resultSet.getDouble("价格");
+                otherCarsMsg.add(new OtherCarsMsg(msg, price, owner));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.releaseSource1(resultSet, preparedStatement, connection);
+        }
+
+        return otherCarsMsg;
     }
 }

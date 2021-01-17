@@ -46,10 +46,9 @@
                         <dd><a href="javascript:jump('${pageContext.request.contextPath}/update.do');">查看编辑二手车信息</a></dd>
                         <dd><a href="javascript:jump('${pageContext.request.contextPath}/publishedMsg.do');">查看已发布信息</a></dd>
                         <dd><a href="javascript:;">查看留言信息</a></dd>
-                        <%--                                            <dd><a href="saleInfo.jsp">关闭二手车信息</a></dd>--%>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">查看他人二手车信息</a></li>
+                <li class="layui-nav-item"><a href="javascript:jump('${pageContext.request.contextPath}/lookOthersCar.car');">查看他人二手车信息</a></li>
             </ul>
         </div>
     </div>
