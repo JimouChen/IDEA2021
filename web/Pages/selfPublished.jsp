@@ -43,9 +43,8 @@
                     <td>${s.price}元</td>
                     <td>${s.carOwner}</td>
                     <td>${s.publish} 🚫(无法修改)🈲</td>
-                    </td>
                     <th>
-                        <a href="javascript:sent()" class="layui-btn layui-btn-primary layui-btn-xs">进入留言📝</a>
+<%--                        <a href="${pageContext.request.contextPath}/commentCar.car?car_id=${s.car_id}" class="layui-btn layui-btn-primary layui-btn-xs">进入留言📝</a>--%>
                         <a href="javascript:sent()" class="layui-btn layui-btn-normal layui-btn-xs">留言关闭</a>
                     </th>
                 </tr>

@@ -1,6 +1,7 @@
 package com.entity;
 
 public class OtherCarsMsg {
+    int carId;
     String msg;
     double price;
     String carOwner;
@@ -8,10 +9,19 @@ public class OtherCarsMsg {
     public OtherCarsMsg() {
     }
 
-    public OtherCarsMsg(String msg, double price, String carOwner) {
+    public OtherCarsMsg(int carId, String msg, double price, String carOwner) {
+        this.carId = carId;
         this.msg = msg;
         this.price = price;
         this.carOwner = carOwner;
+    }
+
+    public int getCarId() {
+        return carId;
+    }
+
+    public void setCarId(int carId) {
+        this.carId = carId;
     }
 
     public String getMsg() {
@@ -41,7 +51,8 @@ public class OtherCarsMsg {
     @Override
     public String toString() {
         return "OtherCarsMsg{" +
-                "msg='" + msg + '\'' +
+                "carId=" + carId +
+                ", msg='" + msg + '\'' +
                 ", price=" + price +
                 ", carOwner='" + carOwner + '\'' +
                 '}';

@@ -55,4 +55,8 @@ public class UserServiceImpl implements UserService{
     public List<OtherCarsMsg> queryOtherCar(int user_id) {
         return userDao.lookOtherCar(user_id);
     }
+
+    public void insertComment(int car_id, int user_id, String comment){
+        userDao.insertComment(car_id, user_id, comment);
+    }
 }

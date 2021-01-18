@@ -25,5 +25,7 @@ public interface UserDao {
 
     List<OtherCarsMsg> lookOtherCar(int user_id);//查询别人发布的二手车
 
+    public void insertComment(int car_id, int user_id, String comment);//留言
+
 
 }

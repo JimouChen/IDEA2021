@@ -31,6 +31,7 @@
             <th>🚗汽车信息</th>
             <th>💰价格</th>
             <th>👮‍车主</th>
+            <th>💬留言功能</th>
         </tr>
         </thead>
         <tbody>
@@ -40,8 +41,13 @@
                     <td>${s.msg}</td>
                     <td>${s.price}元</td>
                     <td>${s.carOwner}</td>
-                    </td>
+<%--                    </td>--%>
+                    <th>
+                        <a href="${pageContext.request.contextPath}/commentCar.car?car_id=${s.carId}" class="layui-btn layui-btn-primary layui-btn-xs">进入留言📝</a>
+                    </th>
                 </tr>
+
+
             </c:forEach>
         </c:if>
 

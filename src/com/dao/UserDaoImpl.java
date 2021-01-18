@@ -238,7 +238,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<OtherCarsMsg> otherCarsMsg = new ArrayList<>();
-        String sql = "SELECT car.msg as'汽车信息',car.price'价格', `user`.`name`'车主' from car, `user` where `user`.user_id = car.user_id and car.publish = 1 and car.ban = 0\n" +
+        String sql = "SELECT car.car_id, car.msg as'汽车信息',car.price'价格', `user`.`name`'车主' from car, `user` where `user`.user_id = car.user_id and car.publish = 1 and car.ban = 0\n" +
                 "and `user`.user_id !=" + user_id + " ;";
 
         try {
@@ -247,10 +247,11 @@ public class UserDaoImpl implements UserDao {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
+                int car_id = resultSet.getInt("car_id");
                 String msg = resultSet.getString("汽车信息");
                 String owner = resultSet.getString("车主");
                 double price = resultSet.getDouble("价格");
-                otherCarsMsg.add(new OtherCarsMsg(msg, price, owner));
+                otherCarsMsg.add(new OtherCarsMsg(car_id, msg, price, owner));
             }
 
         } catch (Exception e) {
@@ -260,5 +261,32 @@ public class UserDaoImpl implements UserDao {
         }
 
         return otherCarsMsg;
+    }
+
+    public void insertComment(int car_id, int user_id, String comment) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        QueryRunner queryRunner = new QueryRunner();
+        String sql1 = "SELECT COUNT(com_id) as 'num' from `comment`;";
+        String sql2 = "INSERT INTO `comment` VALUES (?, ?, ?, ?, 1);";
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql1);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int count = resultSet.getInt("num");
+                System.out.println(count+car_id+comment+user_id);
+                queryRunner.update(connection, sql2, count + 1, car_id, comment, user_id);
+            }
+
+            if (connection != null)
+                connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.releaseSource1(resultSet, preparedStatement, connection);
+        }
     }
 }

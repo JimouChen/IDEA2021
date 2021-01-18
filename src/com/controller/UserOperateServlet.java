@@ -94,5 +94,35 @@ public class UserOperateServlet extends HttpServlet {
 
     }
 
+    protected void commentCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int carId = Integer.parseInt(request.getParameter("car_id"));
+        HttpSession session = request.getSession();
+        session.setAttribute("the_car", carId);
+        request.getRequestDispatcher("/Pages/comment.jsp").forward(request, response);
+    }
 
+    protected void saveComment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        int carId = (int) session.getAttribute("the_car");
+        int user_id = (int) session.getAttribute("userid");
+        String com = request.getParameter("comm");
+        System.out.println("carId is "+carId);
+        System.out.println("userId is "+user_id);
+        System.out.println("comm is "+com);
+        //调用
+        userService.insertComment(carId, user_id, com);
+        lookOthersCar(request, response);
+        System.out.println("留言成功");
+    }
+
+    //回到已发布页面
+    protected void backPublished(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserService userService = new UserServiceImpl();
+        HttpSession session = request.getSession();
+        int user_id = (int) session.getAttribute("userid");
+
+        List<CarMsg> carMsg = userService.showPublishedCarMsg((user_id));
+        request.setAttribute("selfCarMsg", carMsg);
+        request.getRequestDispatcher("/Pages/selfPublished.jsp").forward(request, response);
+    }
 }
