@@ -14,7 +14,7 @@
         <div class="layui-logo">用户后台</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">主页</a></li>
+            <li class="layui-nav-item"><a href="../index.jsp">主页</a></li>
             <%--            <li class="layui-nav-item"><a href="">会员权限管理</a></li>--%>
             <%--            <li class="layui-nav-item"><a href="">出售信息管理</a></li>--%>
         </ul>
