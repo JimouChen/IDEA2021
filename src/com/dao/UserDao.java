@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.CarMsg;
+import com.entity.Comment;
 import com.entity.OtherCarsMsg;
 import com.entity.User;
 
@@ -27,5 +28,6 @@ public interface UserDao {
 
     public void insertComment(int car_id, int user_id, String comment);//留言
 
+    List<Comment> queryComment(int user_id);//查询评论
 
 }

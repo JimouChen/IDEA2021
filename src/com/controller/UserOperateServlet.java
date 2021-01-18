@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.entity.CarMsg;
+import com.entity.Comment;
 import com.entity.OtherCarsMsg;
 import com.service.UserService;
 import com.service.UserServiceImpl;
@@ -106,9 +107,9 @@ public class UserOperateServlet extends HttpServlet {
         int carId = (int) session.getAttribute("the_car");
         int user_id = (int) session.getAttribute("userid");
         String com = request.getParameter("comm");
-        System.out.println("carId is "+carId);
-        System.out.println("userId is "+user_id);
-        System.out.println("comm is "+com);
+        System.out.println("carId is " + carId);
+        System.out.println("userId is " + user_id);
+        System.out.println("comm is " + com);
         //调用
         userService.insertComment(carId, user_id, com);
         lookOthersCar(request, response);
@@ -124,5 +125,19 @@ public class UserOperateServlet extends HttpServlet {
         List<CarMsg> carMsg = userService.showPublishedCarMsg((user_id));
         request.setAttribute("selfCarMsg", carMsg);
         request.getRequestDispatcher("/Pages/selfPublished.jsp").forward(request, response);
+    }
+
+    //查看留言
+    protected void queryComment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        int user_id = (int) session.getAttribute("userid");
+        List<Comment> comments = userService.queryComment(user_id);
+        request.setAttribute("Comment", comments);
+        request.getRequestDispatcher("/Pages/showComment.jsp").forward(request, response);
+    }
+
+    //回复留言
+    protected void ansComment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }

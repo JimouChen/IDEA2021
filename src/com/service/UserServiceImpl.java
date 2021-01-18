@@ -3,12 +3,13 @@ package com.service;
 import com.dao.UserDao;
 import com.dao.UserDaoImpl;
 import com.entity.CarMsg;
+import com.entity.Comment;
 import com.entity.OtherCarsMsg;
 import com.entity.User;
 
 import java.util.List;
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     UserDao userDao = new UserDaoImpl();
 
     @Override
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<CarMsg> showSelfCarMsg(int user_id) {
-         return userDao.showSelfCar(user_id);
+        return userDao.showSelfCar(user_id);
     }
 
     @Override
@@ -56,7 +57,13 @@ public class UserServiceImpl implements UserService{
         return userDao.lookOtherCar(user_id);
     }
 
-    public void insertComment(int car_id, int user_id, String comment){
+    @Override
+    public void insertComment(int car_id, int user_id, String comment) {
         userDao.insertComment(car_id, user_id, comment);
+    }
+
+    @Override
+    public List<Comment> queryComment(int user_id) {
+        return userDao.queryComment(user_id);
     }
 }

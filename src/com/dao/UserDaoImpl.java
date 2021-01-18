@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.CarMsg;
+import com.entity.Comment;
 import com.entity.OtherCarsMsg;
 import com.entity.User;
 import com.util.DBUtil;
@@ -277,7 +278,7 @@ public class UserDaoImpl implements UserDao {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 int count = resultSet.getInt("num");
-                System.out.println(count+car_id+comment+user_id);
+                System.out.println(count + car_id + comment + user_id);
                 queryRunner.update(connection, sql2, count + 1, car_id, comment, user_id);
             }
 
@@ -288,5 +289,37 @@ public class UserDaoImpl implements UserDao {
         } finally {
             DBUtil.releaseSource1(resultSet, preparedStatement, connection);
         }
+    }
+
+    @Override
+    public List<Comment> queryComment(int user_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Comment> comments = new ArrayList<>();
+        String sql = "SELECT car.car_id'cid', car.msg'车信息', `comment`.com_text'评论', `user`.user_id'留言人账号', car.user_id'自己账号', `user`.`name`'留言人' from car, `user`, `comment` where car.car_id = `comment`.car_id and `comment`.user_id = `user`.user_id and car.user_id = " + user_id + " ;";
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int carId = resultSet.getInt("cid");
+                String msg = resultSet.getString("车信息");
+                String com_text = resultSet.getString("评论");
+                int comManId = resultSet.getInt("留言人账号");
+                int selfUid = resultSet.getInt("自己账号");
+                String comManName = resultSet.getString("留言人");
+
+                comments.add(new Comment(carId, msg, com_text, comManId, selfUid, comManName));
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.releaseSource1(resultSet, preparedStatement, connection);
+        }
+        return comments;
     }
 }

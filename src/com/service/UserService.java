@@ -1,6 +1,7 @@
 package com.service;
 
 import com.entity.CarMsg;
+import com.entity.Comment;
 import com.entity.OtherCarsMsg;
 import com.entity.User;
 
@@ -26,4 +27,6 @@ public interface UserService {
     List<OtherCarsMsg> queryOtherCar(int user_id);
 
     void insertComment(int car_id, int user_id, String comment);
+
+    public List<Comment> queryComment(int user_id);
 }
