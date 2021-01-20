@@ -42,7 +42,7 @@
                     <td>${s.msg}</td>
                     <td>${s.price}元</td>
                     <th>
-                        <a href="${pageContext.request.contextPath}/banUserPb.admin?car_id=${s.carId}" class="layui-btn layui-btn-normal layui-btn-xs">取消发布</a>
+                        <a href="${pageContext.request.contextPath}/banUserPb.admin?car_id=${s.carId}" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger">屏蔽信息</a>
                     </th>
                 </tr>
             </c:forEach>

@@ -40,7 +40,7 @@
                     <td>${s.userId}</td>
                     <td>${s.name}</td>
                     <th>
-                        <a href="${pageContext.request.contextPath}/closeVip.admin?user_id=${s.userId}" class="layui-btn layui-btn-xs">取消VIP</a>
+                        <a href="${pageContext.request.contextPath}/closeVip.admin?user_id=${s.userId}" class="layui-btn layui-btn-warm">取消VIP</a>
                     </th>
                 </tr>
             </c:forEach>

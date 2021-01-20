@@ -42,7 +42,10 @@
                     <td>${s.msg}</td>
                     <td>${s.price}元</td>
                     <td>${s.carOwner}</td>
-                    <td>${s.publish} 🚫(无法修改)🈲</td>
+                    <td>
+                        <a href="" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-disabled">${s.publish}🚫禁止修改</a>
+
+                    </td>
                     <th>
 <%--                        <a href="${pageContext.request.contextPath}/commentCar.car?car_id=${s.car_id}" class="layui-btn layui-btn-primary layui-btn-xs">进入留言📝</a>--%>
                         <a href="${pageContext.request.contextPath}/closeComment.car?car_id=${s.car_id}" class="layui-btn layui-btn-normal layui-btn-xs">关闭销售信息</a>

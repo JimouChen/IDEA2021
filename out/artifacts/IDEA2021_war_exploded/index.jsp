@@ -1,28 +1,32 @@
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%--<html>--%>
-<%--  <head>--%>
-<%--    <title>HomePage</title>--%>
-<%--  </head>--%>
-<%--  <body>--%>
-<%--  Hello--%>
-<%--  </body>--%>
-<%--</html>--%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>登录</title>
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/src/css/layui.css"  media="all">
-  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
-</head>
-<body style="background: url(src/images/banner1.jpg);background-attachment: fixed;">
+    <meta charset="utf-8">
+    <title>登录</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/src/css/layui.css">
 
-<center><a href="Pages/login.jsp"><h1>进入登录页</h1></a> </center>
+</head>
+<br><br><br>
+<br><br><br>
+<br><br><br>
+<center>
+    <a class="layui-btn layui-btn-radius layui-btn-primary"><h1>欢迎来到二手车🚗🚘交易平台</h1></a>
+</center>
+<br><br><br>
+<br><br><br>
+
+<body style="background: url(src/images/banner2.jpg);background-attachment: fixed;">
+<center><a href="${pageContext.request.contextPath}/Pages/login.jsp" class="layui-btn layui-btn-radius"><h2>会员登录</h2></a></center>
+<br><br>
+<center><a href="${pageContext.request.contextPath}/Pages/adminLogin.jsp" class="layui-btn layui-btn-radius layui-btn-warm"><h2>管理员登录</h2></a></center>
+
+
+
 </body>
 </html>
+
