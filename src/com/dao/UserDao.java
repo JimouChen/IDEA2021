@@ -1,9 +1,6 @@
 package com.dao;
 
-import com.entity.CarMsg;
-import com.entity.Comment;
-import com.entity.OtherCarsMsg;
-import com.entity.User;
+import com.entity.*;
 
 import java.util.List;
 
@@ -31,5 +28,7 @@ public interface UserDao {
     List<Comment> queryComment(int user_id);//查询评论
 
     public void ansComment(int car_id, int user_id, String ansCom);//回复留言
+
+    List<AnsComment> queryAnsCom(int user_id);//查看自己的回复
 
 }

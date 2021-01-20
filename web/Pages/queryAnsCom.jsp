@@ -7,13 +7,13 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>查看已发布信息</title>
+    <title>查看我的回复</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/src/css/layui.css">
 
 </head>
 <body>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>信息管理</legend>
+    <legend>我的回复信息</legend>
 </fieldset>
 
 
@@ -30,24 +30,22 @@
         <tr>
             <th>🚗汽车信息</th>
             <th>💰价格</th>
-            <th>👮‍车主</th>
-            <th>✔发布状态</th>
-            <th>💬留言功能</th>
+            <th>👮‍留言者</th>
+            <th>💬留言内容</th>
+            <th>🤵🏼我的回复</th>
         </tr>
         </thead>
         <tbody>
-        <c:if test="${!empty requestScope.selfCarMsg}">
-            <c:forEach items="${requestScope.selfCarMsg}" var="s" >
+        <c:if test="${!empty requestScope.AnsCom}">
+            <c:forEach items="${requestScope.AnsCom}" var="s" >
                 <tr>
-                    <td>${s.msg}</td>
+                    <td>${s.carMsg}</td>
                     <td>${s.price}元</td>
-                    <td>${s.carOwner}</td>
-                    <td>${s.publish} 🚫(无法修改)🈲</td>
-                    <th>
-<%--                        <a href="${pageContext.request.contextPath}/commentCar.car?car_id=${s.car_id}" class="layui-btn layui-btn-primary layui-btn-xs">进入留言📝</a>--%>
-                        <a href="javascript:sent()" class="layui-btn layui-btn-normal layui-btn-xs">关闭销售信息</a>
-                    </th>
+                    <td>${s.comName}</td>
+                    <td>${s.comment}</td>
+                    <td>${s.myAnsCom}</td>
                 </tr>
+
             </c:forEach>
         </c:if>
 

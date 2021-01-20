@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.entity.AnsComment;
 import com.entity.CarMsg;
 import com.entity.Comment;
 import com.entity.OtherCarsMsg;
@@ -156,4 +157,12 @@ public class UserOperateServlet extends HttpServlet {
         System.out.println("回复留言成功");
     }
 
+    //查看自己的留言回复
+    protected void querySelfComment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        int userId = (int) session.getAttribute("userid");
+        List<AnsComment> ansComments = userService.queryAnsCom(userId);
+        request.setAttribute("AnsCom", ansComments);
+        request.getRequestDispatcher("/Pages/queryAnsCom.jsp").forward(request, response);
+    }
 }

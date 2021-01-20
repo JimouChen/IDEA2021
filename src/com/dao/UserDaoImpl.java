@@ -1,9 +1,6 @@
 package com.dao;
 
-import com.entity.CarMsg;
-import com.entity.Comment;
-import com.entity.OtherCarsMsg;
-import com.entity.User;
+import com.entity.*;
 import com.util.DBUtil;
 import org.apache.commons.dbutils.QueryRunner;
 
@@ -276,7 +273,7 @@ public class UserDaoImpl implements UserDao {
             connection = DBUtil.getConnection();
             preparedStatement = connection.prepareStatement(sql1);
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 int count = resultSet.getInt("num");
                 System.out.println(count + car_id + comment + user_id);
                 queryRunner.update(connection, sql2, count + 1, car_id, comment, user_id);
@@ -303,7 +300,7 @@ public class UserDaoImpl implements UserDao {
             connection = DBUtil.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int carId = resultSet.getInt("cid");
                 String msg = resultSet.getString("车信息");
                 String com_text = resultSet.getString("评论");
@@ -349,5 +346,39 @@ public class UserDaoImpl implements UserDao {
         } finally {
             DBUtil.releaseSource1(resultSet, preparedStatement, connection);
         }
+    }
+
+    @Override
+    public List<AnsComment> queryAnsCom(int user_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<AnsComment> ansComments = new ArrayList<>();
+        String sql = "SELECT car.msg'汽车信息', car.price'价格', `user`.`name`'留言者', `comment`.com_text'留言内容', answer.com_text'我的回复' from `user`, car, `comment`, answer\n" +
+                "where car.car_id = `comment`.car_id and `comment`.car_id = answer.car_id\n" +
+                "and `comment`.user_id = `user`.user_id and answer.user_id = " + user_id + " ;";
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String msg = resultSet.getString("汽车信息");
+                double price = resultSet.getDouble("价格");
+                String comName = resultSet.getString("留言者");
+                String comment = resultSet.getString("留言内容");
+                String myAnsCom = resultSet.getString("我的回复");
+
+                ansComments.add(new AnsComment(msg, price, comName, comment, myAnsCom));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.releaseSource1(resultSet, preparedStatement, connection);
+        }
+
+        return ansComments;
     }
 }

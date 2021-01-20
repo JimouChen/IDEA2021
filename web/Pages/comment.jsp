@@ -67,7 +67,7 @@
 
 <section class="mes-send">
 
-    <form action="${pageContext.request.contextPath}/saveAnsComment.car" method="post" class="STYLE-NAME">
+    <form action="${pageContext.request.contextPath}/saveComment.car" method="post" class="STYLE-NAME">
 
         <div class="form-group">
             <label for="user_mes">留言：</label>

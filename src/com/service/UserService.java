@@ -1,9 +1,6 @@
 package com.service;
 
-import com.entity.CarMsg;
-import com.entity.Comment;
-import com.entity.OtherCarsMsg;
-import com.entity.User;
+import com.entity.*;
 
 import java.util.List;
 
@@ -31,4 +28,8 @@ public interface UserService {
     public List<Comment> queryComment(int user_id);
 
     public void ansComment(int car_id, int user_id, String ansCom);
+
+    List<AnsComment> queryAnsCom(int user_id);
+
+
 }

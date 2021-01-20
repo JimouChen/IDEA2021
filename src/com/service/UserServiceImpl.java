@@ -2,10 +2,7 @@ package com.service;
 
 import com.dao.UserDao;
 import com.dao.UserDaoImpl;
-import com.entity.CarMsg;
-import com.entity.Comment;
-import com.entity.OtherCarsMsg;
-import com.entity.User;
+import com.entity.*;
 
 import java.util.List;
 
@@ -70,5 +67,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void ansComment(int car_id, int user_id, String ansCom) {
         userDao.ansComment(car_id, user_id, ansCom);
+    }
+
+    @Override
+    public List<AnsComment> queryAnsCom(int user_id) {
+        return userDao.queryAnsCom(user_id);
     }
 }
