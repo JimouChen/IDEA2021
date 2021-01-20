@@ -37,6 +37,8 @@
             <input type="submit" id="entry_btn1" value="会员登录" class="layui-btn layui-btn-normal">
 <%--            <input type="submit" id="entry_btn2" value="管理员登录" class="layui-btn layui-btn-normal">--%>
             <a href="register.jsp" class="layui-btn layui-btn-normal">会员注册</a>
+            <a href="./homepage.jsp" class="layui-btn layui-btn-normal">回到首页</a>
+
         </div>
 
     </div>

@@ -14,22 +14,10 @@
         <div class="layui-logo">管理员后台</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">主页</a></li>
-<%--            <li class="layui-nav-item"><a href="">会员权限管理</a></li>--%>
-<%--            <li class="layui-nav-item"><a href="">出售信息管理</a></li>--%>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/Pages/homepage.jsp">主页</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item">
-                <a href="javascript:;">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    个人中心
-                </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item"><a href="">退出登录</a></li>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/Pages/adminLogin.jsp">退出登录</a></li>
         </ul>
     </div>
 
@@ -38,24 +26,13 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">管理操作</a>
-<%--                    <dl class="layui-nav-child">--%>
-<%--                        <dd><a href="javascript:;">列表一</a></dd>--%>
-<%--                        <dd><a href="javascript:;">列表二</a></dd>--%>
-<%--                        <dd><a href="javascript:;">列表三</a></dd>--%>
-<%--                        <dd><a href="">超链接</a></dd>--%>
-<%--                    </dl>--%>
+                    <a class="" href="${pageContext.request.contextPath}/Pages/adminBackstage.jsp">管理操作</a>
+
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">会员权限管理</a>
-<%--                    <dl class="layui-nav-child">--%>
-<%--                        <dd><a href="javascript:;">列表一</a></dd>--%>
-<%--                        <dd><a href="javascript:;">列表二</a></dd>--%>
-<%--                        <dd><a href="">超链接</a></dd>--%>
-<%--                    </dl>--%>
+                    <dd><a href="javascript:jump('${pageContext.request.contextPath}/banPublish.admin');">出售信息管理</a></dd>
+                    <dd><a href="javascript:jump('${pageContext.request.contextPath}/manageVip.admin');">会员权限管理</a></dd>
                 </li>
-                <li class="layui-nav-item"><a href="">出售信息管理</a></li>
-<%--                <li class="layui-nav-item"><a href="">发布商品</a></li>--%>
             </ul>
         </div>
     </div>
@@ -63,7 +40,7 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
 <%--        <div style="padding: 15px;">内容主体区域</div>--%>
-        <iframe id="iframe_a" src="welcome.jsp" style="width: 100%" height="98%"></iframe>
+        <iframe id="iframe_a" src="${pageContext.request.contextPath}/Pages/welcome.jsp" style="width: 100%" height="98%"></iframe>
     </div>
 
     <div class="layui-footer">
@@ -74,6 +51,9 @@
 <script src="${pageContext.request.contextPath}/src/js/layui.js"></script>
 <script>
     //JavaScript代码区域
+    function jump(url) {
+        parent.document.getElementById("iframe_a").src = url;
+    };
     layui.use('element', function(){
         var element = layui.element;
 

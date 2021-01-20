@@ -75,8 +75,6 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         int user_id = Integer.parseInt(request.getParameter("aid"));
         String password = request.getParameter("password");
-        System.out.println(user_id);
-        System.out.println(password);
 
         if (user_id == 1 && password.equals("admin")){//登陆成功
             System.out.println("登陆成功");

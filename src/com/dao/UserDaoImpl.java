@@ -136,12 +136,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<CarMsg> queryPublishedCar(int user_id) {
+    public List<CarMsg> queryPublishedCar(int user_id) {//只能查到vip用户发布的信息
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<CarMsg> carMsg = new ArrayList<>();
-        String sql = "SELECT car_id, car.user_id, car.msg as '汽车信息',car.price as '价格', `user`.`name` as '车主', car.publish as '发布状态', close_com, ban from car, `user` where `user`.user_id = car.user_id and car.publish = 1 and car.ban = 0 and `user`.user_id = " + user_id + ";";
+        String sql = "SELECT car_id, car.user_id, car.msg as '汽车信息',car.price as '价格', `user`.`name` as '车主', car.publish as '发布状态', close_com, ban from car, `user` where `user`.user_id = car.user_id and car.publish = 1 and car.ban = 0 and `user`.vip = 1 and `user`.user_id = " + user_id + ";";
 
         try {
             connection = DBUtil.getConnection();

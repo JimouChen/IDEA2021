@@ -13,7 +13,7 @@
 </head>
 <body>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>发布权限管理</legend>
+    <legend>会员权限管理</legend>
 </fieldset>
 
 
@@ -28,21 +28,19 @@
         </colgroup>
         <thead>
         <tr>
-            <th>👮发布者</th>
-            <th>🚗汽车信息</th>
-            <th>💰价格</th>
-            <th>🖐信息管理</th>
+            <th>🆔会员账号</th>
+            <th>👮会员名称</th>
+            <th>🖐权限管理</th>
         </tr>
         </thead>
         <tbody>
-        <c:if test="${!empty requestScope.AdminPbMsg}">
-            <c:forEach items="${requestScope.AdminPbMsg}" var="s" >
+        <c:if test="${!empty requestScope.userVip}">
+            <c:forEach items="${requestScope.userVip}" var="s" >
                 <tr>
-                    <td>${s.username}</td>
-                    <td>${s.msg}</td>
-                    <td>${s.price}元</td>
+                    <td>${s.userId}</td>
+                    <td>${s.name}</td>
                     <th>
-                        <a href="${pageContext.request.contextPath}/banUserPb.admin?car_id=${s.carId}" class="layui-btn layui-btn-normal layui-btn-xs">取消发布</a>
+                        <a href="${pageContext.request.contextPath}/closeVip.admin?user_id=${s.userId}" class="layui-btn layui-btn-xs">取消VIP</a>
                     </th>
                 </tr>
             </c:forEach>
