@@ -59,6 +59,4 @@ public class AdminOperateServlet extends HttpServlet {
         adminDao.closeDaoVip(userId);
         manageVip(request, response);
     }
-
-
 }
