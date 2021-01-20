@@ -83,7 +83,6 @@ public class UserOperateServlet extends HttpServlet {
         List<CarMsg> carMsg = userService.showSelfCarMsg((user_id));
         request.setAttribute("selfCarMsg", carMsg);
         request.getRequestDispatcher("/Pages/saleInfo.jsp").forward(request, response);
-        System.out.println(carMsg);
     }
 
     //查看别人的二手车
@@ -93,7 +92,6 @@ public class UserOperateServlet extends HttpServlet {
         List<OtherCarsMsg> otherCarsMsg = userService.queryOtherCar(user_id);
         request.setAttribute("otherCar", otherCarsMsg);
         request.getRequestDispatcher("/Pages/queryOtherCars.jsp").forward(request, response);
-
     }
 
     protected void commentCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -108,9 +106,7 @@ public class UserOperateServlet extends HttpServlet {
         int carId = (int) session.getAttribute("the_car");
         int user_id = (int) session.getAttribute("userid");
         String com = request.getParameter("comm");
-        System.out.println("carId is " + carId);
-        System.out.println("userId is " + user_id);
-        System.out.println("comm is " + com);
+
         //调用
         userService.insertComment(carId, user_id, com);
         lookOthersCar(request, response);

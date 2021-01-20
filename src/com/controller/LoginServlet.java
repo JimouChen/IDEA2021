@@ -55,8 +55,6 @@ public class LoginServlet extends HttpServlet {
         int user_id = Integer.parseInt(request.getParameter("uid"));
 
         String password = request.getParameter("password");
-        System.out.println(user_id);
-        System.out.println(password);
         Boolean flag = userService.showOneUser(user_id, password);
 
         if (flag){//登陆成功

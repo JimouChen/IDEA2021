@@ -28,6 +28,5 @@ public class CarMsgServlet extends HttpServlet {
         List<CarMsg> carMsg = userService.showSelfCarMsg((user_id));
         request.setAttribute("selfCarMsg", carMsg);
         request.getRequestDispatcher("/Pages/saleInfo.jsp").forward(request, response);
-        System.out.println(carMsg);
     }
 }
