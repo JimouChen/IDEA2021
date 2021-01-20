@@ -1,6 +1,12 @@
 # 网上二手车交易信息平台
 ## Java Web实现方案
 - 纯servlet+MVC架构
+	- Servlet
+	- JSP
+	- JDBC
+	- EL 表达式
+	- JSTL
+	- Filter 过滤器
 - 前端采用layui模板美化
 - 数据库采用MySql
 
