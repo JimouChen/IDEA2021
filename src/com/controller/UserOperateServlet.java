@@ -136,8 +136,24 @@ public class UserOperateServlet extends HttpServlet {
         request.getRequestDispatcher("/Pages/showComment.jsp").forward(request, response);
     }
 
-    //回复留言
+    //回复留言saveAnsComment
     protected void ansComment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        int carId = Integer.parseInt(request.getParameter("car_id"));
+        HttpSession session = request.getSession();
+        session.setAttribute("ans_car", carId);
+        request.getRequestDispatcher("/Pages/ansComment.jsp").forward(request, response);
     }
+
+    protected void saveAnsComment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        int carId = (int) session.getAttribute("ans_car");
+        int user_id = (int) session.getAttribute("userid");
+        String com = request.getParameter("ansComm");
+
+        //调用
+        userService.ansComment(carId, user_id, com);
+        queryComment(request, response);
+        System.out.println("回复留言成功");
+    }
+
 }

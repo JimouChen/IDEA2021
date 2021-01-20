@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>留言列表</title>
+    <title>留言回复</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/src/css/layui.css">
     <style>
         /*mes-send*/
@@ -60,9 +60,9 @@
 </head>
 <body>
 
-<a href="${pageContext.request.contextPath}/lookOthersCar.car">←返回</a>
+<a href="${pageContext.request.contextPath}/queryComment.car">←返回</a>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>留言评论</legend>
+    <legend>留言回复</legend>
 </fieldset>
 
 <section class="mes-send">
@@ -71,9 +71,9 @@
 
         <div class="form-group">
             <label for="user_mes">留言：</label>
-            <textarea id="user_mes" name="comm" style="width:800px; height:200px;"></textarea>
+            <textarea id="user_mes" name="ansComm" style="width:800px; height:200px;"></textarea>
         </div>
-        <input type="submit" value="提 交">
+        <input type="submit" value="提交回复">
     </form>
 </section>
 </body>

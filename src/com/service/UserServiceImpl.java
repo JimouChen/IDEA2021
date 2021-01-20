@@ -66,4 +66,9 @@ public class UserServiceImpl implements UserService {
     public List<Comment> queryComment(int user_id) {
         return userDao.queryComment(user_id);
     }
+
+    @Override
+    public void ansComment(int car_id, int user_id, String ansCom) {
+        userDao.ansComment(car_id, user_id, ansCom);
+    }
 }

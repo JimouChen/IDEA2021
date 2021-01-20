@@ -239,7 +239,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<OtherCarsMsg> otherCarsMsg = new ArrayList<>();
-        String sql = "SELECT car.car_id, car.msg as'汽车信息',car.price'价格', `user`.`name`'车主' from car, `user` where `user`.user_id = car.user_id and car.publish = 1 and car.ban = 0\n" +
+        String sql = "SELECT car.car_id, car.msg as'汽车信息',car.price'价格', `user`.`name`'车主' from car, `user` where `user`.user_id = car.user_id and car.publish = 1  and car.close_com = 0  and car.ban = 0\n" +
                 "and `user`.user_id !=" + user_id + " ;";
 
         try {
@@ -321,5 +321,33 @@ public class UserDaoImpl implements UserDao {
             DBUtil.releaseSource1(resultSet, preparedStatement, connection);
         }
         return comments;
+    }
+
+    @Override
+    public void ansComment(int car_id, int user_id, String ansCom) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        QueryRunner queryRunner = new QueryRunner();
+        String sql1 = "SELECT COUNT(ans_id) as 'num' from `answer`;";
+        String sql2 = "INSERT INTO `answer` VALUES (?, ?, ?, ?, 1);";
+
+        try {
+            connection = DBUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql1);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int count = resultSet.getInt("num");
+                System.out.println(count + car_id + ansCom + user_id);
+                queryRunner.update(connection, sql2, count + 1, car_id, ansCom, user_id);
+            }
+
+            if (connection != null)
+                connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.releaseSource1(resultSet, preparedStatement, connection);
+        }
     }
 }

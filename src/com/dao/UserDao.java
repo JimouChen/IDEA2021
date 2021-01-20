@@ -30,4 +30,6 @@ public interface UserDao {
 
     List<Comment> queryComment(int user_id);//查询评论
 
+    public void ansComment(int car_id, int user_id, String ansCom);//回复留言
+
 }

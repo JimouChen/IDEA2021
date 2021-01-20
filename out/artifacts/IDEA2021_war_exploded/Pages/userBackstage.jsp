@@ -14,7 +14,7 @@
         <div class="layui-logo">用户后台</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">主页</a></li>
+            <li class="layui-nav-item"><a href="../index.jsp">主页</a></li>
             <%--            <li class="layui-nav-item"><a href="">会员权限管理</a></li>--%>
             <%--            <li class="layui-nav-item"><a href="">出售信息管理</a></li>--%>
         </ul>
@@ -45,7 +45,8 @@
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:jump('${pageContext.request.contextPath}/update.do');">查看编辑二手车信息</a></dd>
                         <dd><a href="javascript:jump('${pageContext.request.contextPath}/publishedMsg.do');">查看已发布信息</a></dd>
-                        <dd><a href="javascript:;">查看留言信息</a></dd>
+                        <dd><a href="javascript:jump('${pageContext.request.contextPath}/queryComment.car');">查看他人留言信息</a></dd>
+                        <dd><a href="javascript:;">查看我的回复信息</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="javascript:jump('${pageContext.request.contextPath}/lookOthersCar.car');">查看他人二手车信息</a></li>

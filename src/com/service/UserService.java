@@ -29,4 +29,6 @@ public interface UserService {
     void insertComment(int car_id, int user_id, String comment);
 
     public List<Comment> queryComment(int user_id);
+
+    public void ansComment(int car_id, int user_id, String ansCom);
 }
