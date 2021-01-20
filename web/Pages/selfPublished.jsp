@@ -45,7 +45,8 @@
                     <td>${s.publish} 🚫(无法修改)🈲</td>
                     <th>
 <%--                        <a href="${pageContext.request.contextPath}/commentCar.car?car_id=${s.car_id}" class="layui-btn layui-btn-primary layui-btn-xs">进入留言📝</a>--%>
-                        <a href="javascript:sent()" class="layui-btn layui-btn-normal layui-btn-xs">关闭销售信息</a>
+                        <a href="${pageContext.request.contextPath}/closeComment.car?car_id=${s.car_id}" class="layui-btn layui-btn-normal layui-btn-xs">关闭销售信息</a>
+
                     </th>
                 </tr>
             </c:forEach>

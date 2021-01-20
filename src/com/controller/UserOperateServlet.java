@@ -165,4 +165,21 @@ public class UserOperateServlet extends HttpServlet {
         request.setAttribute("AnsCom", ansComments);
         request.getRequestDispatcher("/Pages/queryAnsCom.jsp").forward(request, response);
     }
+
+    //关闭销售信息,且关闭后不可留言
+    protected void closeComment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int carId = Integer.parseInt(request.getParameter("car_id"));
+        userService.closeComment(carId);
+        backPublished(request, response);
+    }
+
+    //修改用户信息
+    protected void changeUserMsg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        int user_id = (int) session.getAttribute("userid");
+        String name = request.getParameter("uname");
+        String password = request.getParameter("psw");
+        userService.changeUserMassage(user_id, name, password);
+        request.getRequestDispatcher("/Pages/welcome.jsp").forward(request, response);
+    }
 }

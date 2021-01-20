@@ -31,5 +31,8 @@ public interface UserService {
 
     List<AnsComment> queryAnsCom(int user_id);
 
+    public void closeComment(int car_id);
+
+    void changeUserMassage(int user_id, String name, String psw);
 
 }

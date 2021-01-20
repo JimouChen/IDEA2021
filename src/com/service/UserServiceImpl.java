@@ -73,4 +73,14 @@ public class UserServiceImpl implements UserService {
     public List<AnsComment> queryAnsCom(int user_id) {
         return userDao.queryAnsCom(user_id);
     }
+
+    @Override
+    public void closeComment(int car_id) {
+        userDao.closeComment(car_id);
+    }
+
+    @Override
+    public void changeUserMassage(int user_id, String name, String psw) {
+        userDao.changeUserMassage(user_id, name, psw);
+    }
 }

@@ -381,4 +381,36 @@ public class UserDaoImpl implements UserDao {
 
         return ansComments;
     }
+
+    @Override
+    public void closeComment(int car_id) {
+        Connection connection = null;
+        QueryRunner queryRunner = new QueryRunner();
+        String sql = "UPDATE car SET close_com = 1 where car_id = ?;";
+
+        try {
+            connection = DBUtil.getConnection();
+            queryRunner.update(connection, sql, car_id);
+            if (connection != null)
+                connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void changeUserMassage(int user_id, String name, String psw) {
+        Connection connection = null;
+        QueryRunner queryRunner = new QueryRunner();
+        String sql = "UPDATE `user` SET `name` = ?, psw = ? where user_id = ?;";
+
+        try {
+            connection = DBUtil.getConnection();
+            queryRunner.update(connection, sql, name, psw, user_id);
+            if (connection != null)
+                connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -20,16 +20,16 @@
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
-                <a href="javascript:;">
+                <a href="javascript:jump('${pageContext.request.contextPath}/Pages/changeUserMsg.jsp');">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    个人中心
+                    用户信息修改
                 </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
-                </dl>
+<%--                <dl class="layui-nav-child">--%>
+<%--                    <dd><a href="">基本资料</a></dd>--%>
+<%--                    <dd><a href="">安全设置</a></dd>--%>
+<%--                </dl>--%>
             </li>
-            <li class="layui-nav-item"><a href="">退出登录</a></li>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/Pages/login.jsp">退出登录</a></li>
         </ul>
     </div>
 

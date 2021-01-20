@@ -31,4 +31,8 @@ public interface UserDao {
 
     List<AnsComment> queryAnsCom(int user_id);//查看自己的回复
 
+    void closeComment(int car_id);//关闭销售信息/留言
+
+    void changeUserMassage(int user_id, String name, String psw);
+
 }
