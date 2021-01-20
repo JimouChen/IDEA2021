@@ -386,7 +386,7 @@ public class UserDaoImpl implements UserDao {
     public void closeComment(int car_id) {
         Connection connection = null;
         QueryRunner queryRunner = new QueryRunner();
-        String sql = "UPDATE car SET close_com = 1 where car_id = ?;";
+        String sql = "UPDATE car SET close_com = 1, publish = 0 where car_id = ?;";
 
         try {
             connection = DBUtil.getConnection();
