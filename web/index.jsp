@@ -13,13 +13,16 @@
 </head>
 <br><br><br>
 <br><br><br>
-<br><br><br>
 <center>
     <a class="layui-btn layui-btn-radius layui-btn-primary"><h1>欢迎来到二手车🚗🚘交易平台</h1></a>
+<br>
+<br>
+<br>
+<img src="${pageContext.request.contextPath}/src/images/car.png" height="300" width="300" />
+<br>
+<br>
+<br>
 </center>
-<br><br><br>
-<br><br><br>
-
 <body style="background: url(src/images/banner2.jpg);background-attachment: fixed;">
 <center><a href="${pageContext.request.contextPath}/Pages/login.jsp" class="layui-btn layui-btn-radius"><h2>会员登录</h2></a></center>
 <br><br>
